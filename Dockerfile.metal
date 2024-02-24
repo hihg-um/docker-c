@@ -6,7 +6,8 @@ LABEL org.opencontainers.image.description="METAL software for meta analysis."
 
 RUN apt -y update -qq && apt -y upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt -y install \
-	zlib1g-dev
+	cmake make \
+  git zlib1g-dev
 
 RUN git clone https://github.com/statgen/METAL.git
 

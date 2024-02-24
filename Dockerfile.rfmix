@@ -6,7 +6,8 @@ LABEL org.opencontainers.image.description="RFMix v2 software for local ancestry
 
 RUN apt -y update && apt -y upgrade && \
   DEBIAN_FRONTEND=noninteractive apt -y install \
-  autoconf libpthread-stubs0-dev
+  autoconf git \
+  make libpthread-stubs0-dev
 
 RUN git clone https://github.com/slowkoni/rfmix.git
 
