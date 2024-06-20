@@ -1,10 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0
-ARG BASE_IMAGE
-FROM $BASE_IMAGE as builder
-
-LABEL org.opencontainers.image.description="Base C/C++ container"
+ARG BASE
+FROM $BASE
 
 RUN apt -y update -qq && apt -y upgrade && \
 	DEBIAN_FRONTEND=noninteractive apt -y install \
-	ca-certificates curl \
-  gcc g++ wget 
+	--no-install-recommends --no-install-suggests \
+		ca-certificates \
+		curl \
+		gcc \
+		g++ \
+		wget \
+	&& \
+	apt -y clean && rm -rf /var/lib/apt/lists/* /tmp/*
+
+LABEL org.opencontainers.image.description="Base C/C++ container"
