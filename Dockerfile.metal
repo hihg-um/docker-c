@@ -34,4 +34,6 @@ COPY --chmod=0555 --from=builder /usr/src/${RUN_CMD}/build/bin/metal \
 					/usr/local/bin/
 COPY --chmod=0555 src/test/${RUN_CMD}.sh /test.sh
 
+ENTRYPOINT [ "metal" ]
+
 LABEL org.opencontainers.image.description="${RUN_CMD} software for meta analysis."
