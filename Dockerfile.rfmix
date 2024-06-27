@@ -32,4 +32,6 @@ ARG BUILD_TIME
 COPY --chmod=0555 --from=builder /rfmix/rfmix /usr/local/bin/rfmix
 COPY --chmod=0555 src/test/${RUN_CMD}.sh /test.sh
 
+ENTRYPOINT [ "rfmix" ]
+
 LABEL org.opencontainers.image.description="RFMix v2 software for local ancestry inference."
