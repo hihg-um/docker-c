@@ -16,6 +16,7 @@ RUN apt -y update -qq && DEBIAN_FRONTEND=noninteractive apt -y install \
 	--no-install-recommends --no-install-suggests \
 		cmake \
 		make \
+		g++ \
 		git \
 		zlib1g-dev
 
@@ -30,10 +31,10 @@ FROM base
 ARG BASE
 ARG RUN_CMD
 
-COPY --chmod=0555 --from=builder /usr/src/${RUN_CMD}/build/bin/metal \
+COPY --chmod=0555 --from=builder /usr/src/${RUN_CMD}/build/bin/${RUN_CMD} \
 					/usr/local/bin/
 COPY --chmod=0555 src/test/${RUN_CMD}.sh /test.sh
 
-ENTRYPOINT [ "metal" ]
+ENTRYPOINT [ "${RUN_CMD}" ]
 
 LABEL org.opencontainers.image.description="${RUN_CMD} software for meta analysis."
