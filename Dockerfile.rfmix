@@ -15,15 +15,14 @@ RUN apt -y update -qq && DEBIAN_FRONTEND=noninteractive apt -y install \
 	--no-install-recommends --no-install-suggests \
 		autoconf \
 		automake \
+		g++ \
 		git \
-		make \
-        && \
-        apt -y clean && rm -rf /var/lib/apt/lists/* /tmp/*
+		make
 
 RUN git clone https://github.com/slowkoni/rfmix.git && \
 	cd rfmix && autoreconf --force --install && ./configure && make
 
-FROM base as runtime
+FROM base
 ARG BASE
 ARG RUN_CMD
 ARG BUILD_REPO

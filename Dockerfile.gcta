@@ -4,7 +4,6 @@ FROM $BASE as base
 
 RUN apt -y update -qq && DEBIAN_FRONTEND=noninteractive apt -y install \
 	--no-install-recommends --no-install-suggests \
-		ca-certificates \
 		libeigen3-dev \
 		libgsl27 \
 		libmkl-core \
@@ -43,10 +42,7 @@ RUN apt -y update -qq && DEBIAN_FRONTEND=noninteractive apt -y install \
 		g++ \
 		gcc \
 		git \
-		make \
-		pkg-config \
-        && \
-        apt -y clean && rm -rf /var/lib/apt/lists/* /tmp/*
+		make
 
 WORKDIR /usr/src
 
@@ -54,7 +50,7 @@ RUN git clone -b gcta_docker https://github.com/thebigcorporation/gcta.git
 RUN cd gcta && git submodule update --init && mkdir build && \
 	cd build && cmake .. && make
 
-FROM base as runtime
+FROM base
 ARG BASE
 ARG RUN_CMD
 ARG BUILD_REPO
