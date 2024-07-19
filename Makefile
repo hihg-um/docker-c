@@ -5,7 +5,7 @@ ORG_NAME ?= hihg-um
 OS_BASE ?= ubuntu
 OS_VER ?= 24.04
 
-TOOLS := admixture metal rfmix
+TOOLS := admixture metal rfmix gcta
 
 ifneq ($(IMAGE_REPO),)
     DOCKER_REPO := $(IMAGE_REPO)/$(ORG_NAME)
